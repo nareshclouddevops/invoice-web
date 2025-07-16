@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td { border: 1px solid black; border-collapse: collapse; }
+    th, td { padding: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Invoice</h1>
+  <h2>Issuer</h2>
+  <p>{{ data['issuer_name'][0] }}<br>{{ data['issuer_address'][0] }}<br>
+  {{ data['issuer_mobile'][0] }}<br>{{ data['issuer_pan'][0] }}</p>
+
+  <h2>Client</h2>
+  <p>{{ data['client_name'][0] }}<br>{{ data['client_address'][0] }}<br>
+  {{ data['client_pan'][0] }}<br>{{ data['client_gst'][0] }}</p>
+
+  <h2>Items</h2>
+  <table>
+    <tr><th>Sr No</th><th>Description</th><th>Date/Qty</th><th>Price</th></tr>
+    {% for i in range(data['item_0']|length) %}
+    <tr>
+      <td>{{ data['item_0'][i] }}</td>
+      <td>{{ data['item_1'][i] }}</td>
+      <td>{{ data['item_2'][i] }}</td>
+      <td>{{ data['item_3'][i] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Banking Details</h2>
+  <p>{{ data['bank_name'][0] }}<br>Acc No: {{ data['bank_number'][0] }}<br>
+  IFSC: {{ data['bank_ifsc'][0] }}<br>{{ data['bank_branch'][0] }}</p>
+</body>
+</html>

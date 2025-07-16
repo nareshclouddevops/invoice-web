@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice Generator</title>
+  <script>
+    function addItemRow() {
+      const table = document.getElementById("itemsTable");
+      const row = table.insertRow();
+      for (let i = 0; i < 4; i++) {
+        const cell = row.insertCell();
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "item_" + i + "[]";
+        input.required = true;
+        cell.appendChild(input);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Generate Invoice</h1>
+  <form action="/generate" method="post">
+    <h2>Issuer Details</h2>
+    <input name="issuer_name" placeholder="Name" required><br>
+    <input name="issuer_address" placeholder="Address" required><br>
+    <input name="issuer_mobile" placeholder="Mobile No." required><br>
+    <input name="issuer_pan" placeholder="PAN No." required><br>
+
+    <h2>Client Details</h2>
+    <input name="client_name" placeholder="Client Name" required><br>
+    <input name="client_address" placeholder="Client Address" required><br>
+    <input name="client_pan" placeholder="Client PAN" required><br>
+    <input name="client_gst" placeholder="Client GST"><br>
+
+    <h2>Items</h2>
+    <table border="1" id="itemsTable">
+      <tr><th>Sr No</th><th>Description</th><th>Date/Qty</th><th>Price</th></tr>
+      <tr><td><input name="item_0[]" required></td><td><input name="item_1[]" required></td><td><input name="item_2[]" required></td><td><input name="item_3[]" required></td></tr>
+    </table>
+    <button type="button" onclick="addItemRow()">Add Row</button>
+
+    <h2>Bank Details</h2>
+    <input name="bank_name" placeholder="Account Name" required><br>
+    <input name="bank_number" placeholder="Account Number" required><br>
+    <input name="bank_ifsc" placeholder="IFSC Code" required><br>
+    <input name="bank_branch" placeholder="Bank Branch" required><br>
+
+    <br><button type="submit">Generate PDF</button>
+  </form>
+</body>
+</html>
